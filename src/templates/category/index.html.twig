@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ article.titleArticle }}{% endblock %}
+
+{% block body %}
+  <h1>{{ article.titleArticle }}</h1>
+
+  <article>
+    <p>
+      <strong>Publié le :</strong>
+      {% if article.publishedAt %}
+        {{ article.publishedAt|date('d/m/Y H:i') }}
+      {% else %}
+        -
+      {% endif %}
+    </p>
+
+    <p>
+      <strong>Mis à jour le :</strong>
+      {% if article.updatedAt %}
+        {{ article.updatedAt|date('d/m/Y H:i') }}
+      {% else %}
+        -
+      {% endif %}
+    </p>
+
+    <p>
+      <strong>Auteur :</strong>
+      {% if article.writeBy %}
+        {{ article.writeBy.firstnameUser }} {{ article.writeBy.nameUser }}
+      {% else %}
+        -
+      {% endif %}
+    </p>
+
+    <p>
+      <strong>Catégories :</strong>
+      {% if article.categories is not empty %}
+        {% for category in article.categories %}
+          {{ category.nameCat }}{% if not loop.last %}, {% endif %}
+        {% endfor %}
+      {% else %}
+        -
+      {% endif %}
+    </p>
+
+    {% if article.imageArticle %}
+      <figure>
+        <img
+          src="{{ article.imageArticle }}"
+          alt="{{ article.titleArticle }}"
+          style="max-width: 100%; height: auto;"
+        >
+      </figure>
+    {% endif %}
+
+    <div>
+      {{ article.contentArticle|raw }}
+    </div>
+  </article>
+
+  <p>
+    <a href="{{ path('article_list') }}">Retour aux articles</a>
+  </p>
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ category.nameCat }}{% endblock %}
+
+{% block body %}
+  <h1>{{ category.nameCat }}</h1>
+
+  <article>
+    {% if category.descriptionCat %}
+      <p>{{ category.descriptionCat }}</p>
+    {% else %}
+      <p><em>Aucune description disponible.</em></p>
+    {% endif %}
+  </article>
+
+  <p>
+    <a href="{{ path('category_list') }}">Retour aux catégories</a>
+  </p>
+{% endblock %}

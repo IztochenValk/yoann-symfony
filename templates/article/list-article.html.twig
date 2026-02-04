@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+  <h1>Articles</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Titre</th>
+        <th>Date de publication</th>
+        <th>Catégorie</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for article in articles %}
+        <tr>
+          <td>
+            <a href="{{ path('article_single', { id: article.id }) }}">
+              {{ article.titleArticle }}
+            </a>
+          </td>
+
+          <td>
+            {% if article.publishedAt %}
+              {{ article.publishedAt|date('d/m/Y H:i') }}
+            {% else %}
+              -
+            {% endif %}
+          </td>
+
+          <td>
+            {% set category = article.categories|first %}
+            {{ category ? category.nameCat : '-' }}
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="3">Aucun article</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

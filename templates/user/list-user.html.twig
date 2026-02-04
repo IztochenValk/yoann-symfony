@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+  <h1>Utilisateurs</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Prénom</th>
+        <th>Nom</th>
+        <th>Email</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in users %}
+        <tr>
+          <td>{{ user.firstnameUser }}</td>
+          <td>{{ user.nameUser }}</td>
+          <td><a href="{{ path("account", { email: user.emailUser }) }}">{{ user.emailUser }}</a></td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="3">Aucun utilisateur</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

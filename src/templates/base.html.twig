@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Blog{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+            <style>
+                :root {
+                    --app-max-width: 980px;
+                }
+
+                body {
+                    background: linear-gradient(180deg, rgba(0,0,0,.03), rgba(0,0,0,0));
+                }
+
+                .app {
+                    max-width: var(--app-max-width);
+                    margin: 0 auto;
+                    padding: 1.25rem;
+                }
+
+                .topbar {
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
+                    backdrop-filter: blur(10px);
+                    background: rgba(255,255,255,.8);
+                    border-bottom: 1px solid rgba(0,0,0,.08);
+                }
+
+                .topbar .app {
+                    padding-top: .75rem;
+                    padding-bottom: .75rem;
+                }
+
+                .brand {
+                    display: flex;
+                    align-items: center;
+                    gap: .6rem;
+                }
+
+                .brand-badge {
+                    width: 34px;
+                    height: 34px;
+                    border-radius: 10px;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    background: #111827;
+                    color: #fff;
+                    font-weight: 700;
+                    letter-spacing: .5px;
+                }
+
+                .page-head {
+                    margin: 1.2rem 0 1rem;
+                    display: flex;
+                    align-items: flex-end;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    flex-wrap: wrap;
+                }
+
+                .page-subtitle {
+                    margin: .25rem 0 0;
+                    opacity: .75;
+                }
+
+                .card-grid {
+                    display: grid;
+                    grid-template-columns: repeat(12, 1fr);
+                    gap: 1rem;
+                }
+
+                .card-col {
+                    grid-column: span 12;
+                }
+
+                @media (min-width: 900px) {
+                    .card-col {
+                        grid-column: span 6;
+                    }
+                }
+
+                .muted {
+                    opacity: .75;
+                }
+
+                footer {
+                    margin-top: 2rem;
+                    opacity: .7;
+                }
+            </style>
+        {% endblock %}
+    </head>
+    <body>
+
+    <header class="topbar">
+        <div class="app">
+            {% include 'partials/_navbar.html.twig' %}
+        </div>
+    </header>
+
+
+    <main class="app">
+        {% block body %}{% endblock %}
+    </main>
+
+    <footer class="app">
+        <hr>
+        <small>© {{ "now"|date("Y") }} - Un blog en Symfony</small>
+    </footer>
+
+    </body>
+</html>

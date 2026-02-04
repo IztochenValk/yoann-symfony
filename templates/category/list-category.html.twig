@@ -1,0 +1,26 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Catégories{% endblock %}
+
+{% block body %}
+  <h1>Catégories</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nom</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+        <tr>
+          <td><a href="{{ path("category_single", { id: category.id }) }}">{{ category.nameCat }}</a></td>
+        </tr>
+      {% else %}
+        <tr>
+          <td>Aucune catégorie</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}
