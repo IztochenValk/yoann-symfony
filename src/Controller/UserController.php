@@ -24,10 +24,6 @@ class UserController extends AbstractController
     {
         $user = $repo->findOneBy(["email_user" => $email]);
 
-        if ($user === null) {
-            throw $this->createNotFoundException();
-        }
-
         return $this->render("user/single-user.html.twig", [
             "user" => $user
         ]);
